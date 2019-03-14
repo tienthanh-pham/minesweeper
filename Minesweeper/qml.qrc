@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qml/page/MinesweeperPlayer.qml</file>
+        <file>qml/unit/Box.qml</file>
+    </qresource>
+</RCC>

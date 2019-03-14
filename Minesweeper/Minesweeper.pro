@@ -17,7 +17,7 @@ HEADERS += \
     AppDefine.h
 
 SOURCES += \
-        main.cpp \
+    main.cpp \
     AppMain.cpp
 
 include(model/model.pri)

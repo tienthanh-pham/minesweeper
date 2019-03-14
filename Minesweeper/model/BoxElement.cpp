@@ -26,6 +26,22 @@ bool BoxElement::isBomb()
     return result;
 }
 
+bool BoxElement::isOpen()
+{
+    if (m_status == E_BOX_STATUS::OPEN) {
+        return true;
+    }
+    return false;
+}
+
+bool BoxElement::isFlag()
+{
+    if (m_status == E_BOX_STATUS::FLAG){
+        return true;
+    }
+    return false;
+}
+
 void BoxElement::setValue(int value)
 {
     m_value = value;

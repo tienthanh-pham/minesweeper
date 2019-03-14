@@ -18,6 +18,7 @@ public:
 public:
     void append(BoxElement element);
     bool update(int idx, BoxElement element);
+    bool update(int idx, E_ROLE_LIST_MODEL role, QVariant value);
 };
 
 #endif // LISTMODEL_H

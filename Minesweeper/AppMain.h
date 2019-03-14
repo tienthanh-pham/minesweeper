@@ -16,6 +16,9 @@ public:
     AppMain();
 public:
     Q_INVOKABLE void hmiEvent(int eventId, QString parameter);
+
+private:
+    void creatMap(int m, int n, int number);
 };
 
 #endif // APPMAIN_H

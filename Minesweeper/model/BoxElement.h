@@ -14,6 +14,8 @@ public:
     int getValue();
     E_BOX_STATUS getStatus();
     bool isBomb();
+    bool isOpen();
+    bool isFlag();
 public:
     void setValue(int value);
     void setStatus(E_BOX_STATUS status);

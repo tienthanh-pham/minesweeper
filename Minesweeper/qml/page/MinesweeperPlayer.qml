@@ -15,6 +15,9 @@ Item {
         delegate: Box {
             value: model.value
             isBomb: model.isBomb
+            isOpen: model.isOpen
+            isFlag: model.isFlag
+            index: model.index
         }
     }
 }

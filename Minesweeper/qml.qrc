@@ -5,5 +5,7 @@
         <file>qml/unit/Box.qml</file>
         <file>res/bomb.png</file>
         <file>res/flag.png</file>
+        <file>qml/page/GameOver.qml</file>
+        <file>res/game_over.jpg</file>
     </qresource>
 </RCC>

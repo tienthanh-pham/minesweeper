@@ -67,3 +67,8 @@ bool ListModel::update(int idx, E_ROLE_LIST_MODEL role, QVariant value)
     emit dataChanged(index(idx), index(idx));
     return true;
 }
+
+void ListModel::clear()
+{
+    m_listModel.clear();
+}

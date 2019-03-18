@@ -2,22 +2,23 @@
 #include "AppDefine.h"
 #include <QQmlContext>
 #include <QQuickItem>
+#include <ctime>
 
 AppMain::AppMain()
     : m_view(nullptr)
     , m_listModel(nullptr)
+    , m_widthCount(7)
+    , m_heightCount(12)
+    , m_bombs(10)
 {
-    m_listModel = new ListModel();
-
-    creatMap(10, 10, 10);
-
     m_view = new QQuickView(QUrl("qrc:/main.qml"));
     m_view->show();
 
     m_view->rootContext()->setContextProperty("appmain", this);
-    m_view->rootContext()->setContextProperty("listModel", m_listModel);
+    m_view->rootContext()->setContextProperty("widthCount", this->m_widthCount);
+    m_view->rootContext()->setContextProperty("heightCount", this->m_heightCount);
 
-    m_view->rootObject()->setProperty("mainSourceLoader", "qrc:/qml/page/MinesweeperPlayer.qml");
+    startGame();
 }
 
 void AppMain::hmiEvent(int eventId, QString parameter)
@@ -30,6 +31,12 @@ void AppMain::hmiEvent(int eventId, QString parameter)
         break;
     case E_HMI_EVENT::BOX_LEFT_CLICK:
         m_listModel->update(parameter.toInt(), E_ROLE_LIST_MODEL::STATUS, E_BOX_STATUS::OPEN);
+        break;
+    case E_HMI_EVENT::BOX_BOMB_CLICK:
+        m_view->rootObject()->setProperty("mainSourceLoader", "qrc:/qml/page/GameOver.qml");
+        break;
+    case 3:
+        startGame();
         break;
     default:
         break;
@@ -45,8 +52,9 @@ void AppMain::creatMap(int m, int n, int number)
     int BOMB = -1;
     int i = 0;
 
+    srand(time(NULL));
     while (number != 0) {
-        i = floor(rand() % (m * n));
+        i = rand() % (m * n);
         if (model[i] != BOMB) {
             model[i] = BOMB;
             bool top = (floor(i/m) == 0);
@@ -72,4 +80,16 @@ void AppMain::creatMap(int m, int n, int number)
         element.setValue(value);
         m_listModel->append(element);
     }
+}
+
+void AppMain::startGame()
+{
+    if (m_listModel == nullptr){
+        m_listModel = new ListModel();
+        m_view->rootContext()->setContextProperty("listModel", m_listModel);
+    } else {
+        m_listModel->clear();
+    }
+    creatMap(m_widthCount, m_heightCount, m_bombs);
+    m_view->rootObject()->setProperty("mainSourceLoader", "qrc:/qml/page/MinesweeperPlayer.qml");
 }

@@ -12,6 +12,9 @@ class AppMain : public QObject
 private:
     QQuickView *m_view;
     ListModel *m_listModel;
+    int m_widthCount;
+    int m_heightCount;
+    int m_bombs;
 public:
     AppMain();
 public:
@@ -19,6 +22,7 @@ public:
 
 private:
     void creatMap(int m, int n, int number);
+    void startGame();
 };
 
 #endif // APPMAIN_H

@@ -17,7 +17,8 @@ enum E_ROLE_LIST_MODEL {
 
 enum E_HMI_EVENT {
     BOX_RIGHT_CLICK = 0,
-    BOX_LEFT_CLICK
+    BOX_LEFT_CLICK,
+    BOX_BOMB_CLICK
 };
 
 
